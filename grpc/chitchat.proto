@@ -1,0 +1,23 @@
+syntax = "proto3";
+package chitchat;
+option go_package = "./grpc;chitchat";
+
+service ChatService {
+  rpc Chat(stream ClientEvent) returns (stream ServerEvent);
+}
+
+enum EventType { UNKNOWN=0; JOIN=1; LEAVE=2; PUBLISH=3; }
+
+message ClientEvent {
+  EventType type = 1;         
+  string client_id = 2;       
+  string content = 3; 
+  uint64 logical_time = 4;       
+}
+
+message ServerEvent {
+  EventType type = 1;         
+  string client_id = 2;       
+  string content = 3;         
+  uint64 logical_time = 4;    
+}
