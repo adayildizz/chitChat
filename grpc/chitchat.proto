@@ -1,23 +1,36 @@
 syntax = "proto3";
+
 package chitchat;
-option go_package = "./grpc;chitchat";
 
-service ChatService {
-  rpc Chat(stream ClientEvent) returns (stream ServerEvent);
+option go_package = "./grpc";
+
+message JoinRequest {
+  string client_id = 1;
 }
 
-enum EventType { UNKNOWN=0; JOIN=1; LEAVE=2; PUBLISH=3; }
 
-message ClientEvent {
-  EventType type = 1;         
-  string client_id = 2;       
-  string content = 3; 
-  uint64 logical_time = 4;       
+message LeaveRequest {
+  string client_id = 1;
 }
 
-message ServerEvent {
-  EventType type = 1;         
-  string client_id = 2;       
-  string content = 3;         
-  uint64 logical_time = 4;    
+// This is server for broadcast 
+message ChatMessage {
+  string sender_id = 1;
+  string content = 2;
+  int64 logical_time = 3;
+}
+
+message PublishRequest {
+  string sender_id = 1;
+  string content = 2;
+}
+
+message Ack {
+  string status = 1;
+}
+
+service ChitChat {
+  rpc Join(JoinRequest) returns (stream ChatMessage);
+  rpc Publish(PublishRequest) returns (Ack);
+  rpc Leave(LeaveRequest) returns (Ack);
 }
