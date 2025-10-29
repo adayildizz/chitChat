@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
+	"sync"
 
 	pb "chitChat/grpc/chitchatpb"
 
@@ -14,6 +16,7 @@ import (
 )
 
 func main() {
+    var printMu sync.Mutex
     conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
     if err != nil {
         log.Fatalf("Failed to connect: %v", err)
@@ -25,7 +28,8 @@ func main() {
     reader := bufio.NewReader(os.Stdin)
     fmt.Print("Enter your client ID: ")
     clientID, _ := reader.ReadString('\n')
-    clientID = clientID[:len(clientID)-1]
+    clientID = strings.TrimSpace(clientID)
+
 
     ctx := context.Background()
 
@@ -36,34 +40,48 @@ func main() {
 
     
     go func() {
-        for {
-            msg, err := stream.Recv()
-            if err != nil {
-                log.Printf("[Client %s] Stream closed: %v", clientID, err)
-                return
-            }
-            fmt.Printf("[%d] %s: %s\n", msg.LogicalTime, msg.SenderId, msg.Content)
-        }
-    }()
-
-   
     for {
-        fmt.Print("> ")
-        text, _ := reader.ReadString('\n')
-        text = text[:len(text)-1]
-
-        if text == "exit" {
-            _, _ = client.Leave(ctx, &pb.LeaveRequest{ClientId: clientID})
-            log.Println("Left Chit Chat.")
+        msg, err := stream.Recv()
+        if err != nil {
+            printMu.Lock()
+            log.Printf("[Client %s] Stream closed: %v", clientID, err)
+            printMu.Unlock()
             return
         }
 
-        _, err := client.Publish(ctx, &pb.PublishRequest{
-            SenderId: clientID,
-            Content:  text,
-        })
-        if err != nil {
-            log.Printf("Publish failed: %v", err)
-        }
+        printMu.Lock()
+        fmt.Printf("\r[%d] %s: %s\n> ", msg.LogicalTime, msg.SenderId, msg.Content)
+        printMu.Unlock()
     }
+    }()
+
+    printMu.Lock()
+    fmt.Print("> ")
+    printMu.Unlock()
+
+   
+    for {
+
+    text, _ := reader.ReadString('\n')
+    text = strings.TrimSpace(text)
+
+    if text == "exit" {
+        _, _ = client.Leave(ctx, &pb.LeaveRequest{ClientId: clientID})
+        printMu.Lock()
+        log.Println("Left Chit Chat.")
+        printMu.Unlock()
+        return
+    }
+
+    _, err := client.Publish(ctx, &pb.PublishRequest{
+        SenderId: clientID,
+        Content:  text,
+    })
+    if err != nil {
+        printMu.Lock()
+        log.Printf("Publish failed: %v", err)
+        printMu.Unlock()
+    }
+}
+
 }
