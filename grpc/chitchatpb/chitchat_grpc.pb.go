@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.32.1
-// source: grpc/chitchat.proto
+// source: chitChat/grpc/chitchat.proto
 
-package grpc
+package chitchatpb
 
 import (
 	context "context"
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChitChat_Join_FullMethodName    = "/chitchat.ChitChat/Join"
-	ChitChat_Publish_FullMethodName = "/chitchat.ChitChat/Publish"
-	ChitChat_Leave_FullMethodName   = "/chitchat.ChitChat/Leave"
+	ChitChat_Join_FullMethodName    = "/ChitChat/Join"
+	ChitChat_Publish_FullMethodName = "/ChitChat/Publish"
+	ChitChat_Leave_FullMethodName   = "/ChitChat/Leave"
 )
 
 // ChitChatClient is the client API for ChitChat service.
@@ -178,7 +178,7 @@ func _ChitChat_Leave_Handler(srv interface{}, ctx context.Context, dec func(inte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ChitChat_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "chitchat.ChitChat",
+	ServiceName: "ChitChat",
 	HandlerType: (*ChitChatServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -197,5 +197,5 @@ var ChitChat_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "grpc/chitchat.proto",
+	Metadata: "chitChat/grpc/chitchat.proto",
 }

@@ -1,8 +1,6 @@
 syntax = "proto3";
 
-package chitchat;
-
-option go_package = "./grpc";
+option go_package = "chitChat/grpc/chitchatpb";
 
 message JoinRequest {
   string client_id = 1;

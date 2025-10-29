@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.9
 // 	protoc        v6.32.1
-// source: grpc/chitchat.proto
+// source: chitChat/grpc/chitchat.proto
 
-package grpc
+package chitchatpb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -30,7 +30,7 @@ type JoinRequest struct {
 
 func (x *JoinRequest) Reset() {
 	*x = JoinRequest{}
-	mi := &file_grpc_chitchat_proto_msgTypes[0]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +42,7 @@ func (x *JoinRequest) String() string {
 func (*JoinRequest) ProtoMessage() {}
 
 func (x *JoinRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_chitchat_proto_msgTypes[0]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +55,7 @@ func (x *JoinRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JoinRequest.ProtoReflect.Descriptor instead.
 func (*JoinRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_chitchat_proto_rawDescGZIP(), []int{0}
+	return file_chitChat_grpc_chitchat_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *JoinRequest) GetClientId() string {
@@ -74,7 +74,7 @@ type LeaveRequest struct {
 
 func (x *LeaveRequest) Reset() {
 	*x = LeaveRequest{}
-	mi := &file_grpc_chitchat_proto_msgTypes[1]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -86,7 +86,7 @@ func (x *LeaveRequest) String() string {
 func (*LeaveRequest) ProtoMessage() {}
 
 func (x *LeaveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_chitchat_proto_msgTypes[1]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -99,7 +99,7 @@ func (x *LeaveRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LeaveRequest.ProtoReflect.Descriptor instead.
 func (*LeaveRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_chitchat_proto_rawDescGZIP(), []int{1}
+	return file_chitChat_grpc_chitchat_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *LeaveRequest) GetClientId() string {
@@ -121,7 +121,7 @@ type ChatMessage struct {
 
 func (x *ChatMessage) Reset() {
 	*x = ChatMessage{}
-	mi := &file_grpc_chitchat_proto_msgTypes[2]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -133,7 +133,7 @@ func (x *ChatMessage) String() string {
 func (*ChatMessage) ProtoMessage() {}
 
 func (x *ChatMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_chitchat_proto_msgTypes[2]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -146,7 +146,7 @@ func (x *ChatMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatMessage.ProtoReflect.Descriptor instead.
 func (*ChatMessage) Descriptor() ([]byte, []int) {
-	return file_grpc_chitchat_proto_rawDescGZIP(), []int{2}
+	return file_chitChat_grpc_chitchat_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ChatMessage) GetSenderId() string {
@@ -180,7 +180,7 @@ type PublishRequest struct {
 
 func (x *PublishRequest) Reset() {
 	*x = PublishRequest{}
-	mi := &file_grpc_chitchat_proto_msgTypes[3]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -192,7 +192,7 @@ func (x *PublishRequest) String() string {
 func (*PublishRequest) ProtoMessage() {}
 
 func (x *PublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_chitchat_proto_msgTypes[3]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -205,7 +205,7 @@ func (x *PublishRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishRequest.ProtoReflect.Descriptor instead.
 func (*PublishRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_chitchat_proto_rawDescGZIP(), []int{3}
+	return file_chitChat_grpc_chitchat_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *PublishRequest) GetSenderId() string {
@@ -231,7 +231,7 @@ type Ack struct {
 
 func (x *Ack) Reset() {
 	*x = Ack{}
-	mi := &file_grpc_chitchat_proto_msgTypes[4]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -243,7 +243,7 @@ func (x *Ack) String() string {
 func (*Ack) ProtoMessage() {}
 
 func (x *Ack) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_chitchat_proto_msgTypes[4]
+	mi := &file_chitChat_grpc_chitchat_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -256,7 +256,7 @@ func (x *Ack) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Ack.ProtoReflect.Descriptor instead.
 func (*Ack) Descriptor() ([]byte, []int) {
-	return file_grpc_chitchat_proto_rawDescGZIP(), []int{4}
+	return file_chitChat_grpc_chitchat_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Ack) GetStatus() string {
@@ -266,11 +266,11 @@ func (x *Ack) GetStatus() string {
 	return ""
 }
 
-var File_grpc_chitchat_proto protoreflect.FileDescriptor
+var File_chitChat_grpc_chitchat_proto protoreflect.FileDescriptor
 
-const file_grpc_chitchat_proto_rawDesc = "" +
+const file_chitChat_grpc_chitchat_proto_rawDesc = "" +
 	"\n" +
-	"\x13grpc/chitchat.proto\x12\bchitchat\"*\n" +
+	"\x1cchitChat/grpc/chitchat.proto\"*\n" +
 	"\vJoinRequest\x12\x1b\n" +
 	"\tclient_id\x18\x01 \x01(\tR\bclientId\"+\n" +
 	"\fLeaveRequest\x12\x1b\n" +
@@ -283,39 +283,39 @@ const file_grpc_chitchat_proto_rawDesc = "" +
 	"\tsender_id\x18\x01 \x01(\tR\bsenderId\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\"\x1d\n" +
 	"\x03Ack\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status2\xa6\x01\n" +
-	"\bChitChat\x126\n" +
-	"\x04Join\x12\x15.chitchat.JoinRequest\x1a\x15.chitchat.ChatMessage0\x01\x122\n" +
-	"\aPublish\x12\x18.chitchat.PublishRequest\x1a\r.chitchat.Ack\x12.\n" +
-	"\x05Leave\x12\x16.chitchat.LeaveRequest\x1a\r.chitchat.AckB\bZ\x06./grpcb\x06proto3"
+	"\x06status\x18\x01 \x01(\tR\x06status2p\n" +
+	"\bChitChat\x12$\n" +
+	"\x04Join\x12\f.JoinRequest\x1a\f.ChatMessage0\x01\x12 \n" +
+	"\aPublish\x12\x0f.PublishRequest\x1a\x04.Ack\x12\x1c\n" +
+	"\x05Leave\x12\r.LeaveRequest\x1a\x04.AckB\x1aZ\x18chitChat/grpc/chitchatpbb\x06proto3"
 
 var (
-	file_grpc_chitchat_proto_rawDescOnce sync.Once
-	file_grpc_chitchat_proto_rawDescData []byte
+	file_chitChat_grpc_chitchat_proto_rawDescOnce sync.Once
+	file_chitChat_grpc_chitchat_proto_rawDescData []byte
 )
 
-func file_grpc_chitchat_proto_rawDescGZIP() []byte {
-	file_grpc_chitchat_proto_rawDescOnce.Do(func() {
-		file_grpc_chitchat_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_grpc_chitchat_proto_rawDesc), len(file_grpc_chitchat_proto_rawDesc)))
+func file_chitChat_grpc_chitchat_proto_rawDescGZIP() []byte {
+	file_chitChat_grpc_chitchat_proto_rawDescOnce.Do(func() {
+		file_chitChat_grpc_chitchat_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_chitChat_grpc_chitchat_proto_rawDesc), len(file_chitChat_grpc_chitchat_proto_rawDesc)))
 	})
-	return file_grpc_chitchat_proto_rawDescData
+	return file_chitChat_grpc_chitchat_proto_rawDescData
 }
 
-var file_grpc_chitchat_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_grpc_chitchat_proto_goTypes = []any{
-	(*JoinRequest)(nil),    // 0: chitchat.JoinRequest
-	(*LeaveRequest)(nil),   // 1: chitchat.LeaveRequest
-	(*ChatMessage)(nil),    // 2: chitchat.ChatMessage
-	(*PublishRequest)(nil), // 3: chitchat.PublishRequest
-	(*Ack)(nil),            // 4: chitchat.Ack
+var file_chitChat_grpc_chitchat_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_chitChat_grpc_chitchat_proto_goTypes = []any{
+	(*JoinRequest)(nil),    // 0: JoinRequest
+	(*LeaveRequest)(nil),   // 1: LeaveRequest
+	(*ChatMessage)(nil),    // 2: ChatMessage
+	(*PublishRequest)(nil), // 3: PublishRequest
+	(*Ack)(nil),            // 4: Ack
 }
-var file_grpc_chitchat_proto_depIdxs = []int32{
-	0, // 0: chitchat.ChitChat.Join:input_type -> chitchat.JoinRequest
-	3, // 1: chitchat.ChitChat.Publish:input_type -> chitchat.PublishRequest
-	1, // 2: chitchat.ChitChat.Leave:input_type -> chitchat.LeaveRequest
-	2, // 3: chitchat.ChitChat.Join:output_type -> chitchat.ChatMessage
-	4, // 4: chitchat.ChitChat.Publish:output_type -> chitchat.Ack
-	4, // 5: chitchat.ChitChat.Leave:output_type -> chitchat.Ack
+var file_chitChat_grpc_chitchat_proto_depIdxs = []int32{
+	0, // 0: ChitChat.Join:input_type -> JoinRequest
+	3, // 1: ChitChat.Publish:input_type -> PublishRequest
+	1, // 2: ChitChat.Leave:input_type -> LeaveRequest
+	2, // 3: ChitChat.Join:output_type -> ChatMessage
+	4, // 4: ChitChat.Publish:output_type -> Ack
+	4, // 5: ChitChat.Leave:output_type -> Ack
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -323,26 +323,26 @@ var file_grpc_chitchat_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_grpc_chitchat_proto_init() }
-func file_grpc_chitchat_proto_init() {
-	if File_grpc_chitchat_proto != nil {
+func init() { file_chitChat_grpc_chitchat_proto_init() }
+func file_chitChat_grpc_chitchat_proto_init() {
+	if File_chitChat_grpc_chitchat_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_grpc_chitchat_proto_rawDesc), len(file_grpc_chitchat_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_chitChat_grpc_chitchat_proto_rawDesc), len(file_chitChat_grpc_chitchat_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_grpc_chitchat_proto_goTypes,
-		DependencyIndexes: file_grpc_chitchat_proto_depIdxs,
-		MessageInfos:      file_grpc_chitchat_proto_msgTypes,
+		GoTypes:           file_chitChat_grpc_chitchat_proto_goTypes,
+		DependencyIndexes: file_chitChat_grpc_chitchat_proto_depIdxs,
+		MessageInfos:      file_chitChat_grpc_chitchat_proto_msgTypes,
 	}.Build()
-	File_grpc_chitchat_proto = out.File
-	file_grpc_chitchat_proto_goTypes = nil
-	file_grpc_chitchat_proto_depIdxs = nil
+	File_chitChat_grpc_chitchat_proto = out.File
+	file_chitChat_grpc_chitchat_proto_goTypes = nil
+	file_chitChat_grpc_chitchat_proto_depIdxs = nil
 }
