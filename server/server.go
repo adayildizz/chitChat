@@ -99,7 +99,7 @@ func (s *Server) broadcast(message *pb.ChatMessage){
 }
 
 func main() {
-	lis, err := net.Listen("tcp", "5051")
+	lis, err := net.Listen("tcp", ":50051")
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
 	}
