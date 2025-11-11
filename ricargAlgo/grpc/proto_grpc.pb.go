@@ -19,139 +19,139 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_RequestCS_FullMethodName = "/Service/RequestCS"
-	Service_ReplyCS_FullMethodName   = "/Service/ReplyCS"
+	RAServer_RequestCS_FullMethodName = "/RAServer/RequestCS"
+	RAServer_ReplyCS_FullMethodName   = "/RAServer/ReplyCS"
 )
 
-// ServiceClient is the client API for Service service.
+// RAServerClient is the client API for RAServer service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ServiceClient interface {
+type RAServerClient interface {
 	RequestCS(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Empty, error)
 	ReplyCS(ctx context.Context, in *Reply, opts ...grpc.CallOption) (*Empty, error)
 }
 
-type serviceClient struct {
+type rAServerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
-	return &serviceClient{cc}
+func NewRAServerClient(cc grpc.ClientConnInterface) RAServerClient {
+	return &rAServerClient{cc}
 }
 
-func (c *serviceClient) RequestCS(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Empty, error) {
+func (c *rAServerClient) RequestCS(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, Service_RequestCS_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, RAServer_RequestCS_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) ReplyCS(ctx context.Context, in *Reply, opts ...grpc.CallOption) (*Empty, error) {
+func (c *rAServerClient) ReplyCS(ctx context.Context, in *Reply, opts ...grpc.CallOption) (*Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, Service_ReplyCS_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, RAServer_ReplyCS_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ServiceServer is the server API for Service service.
-// All implementations must embed UnimplementedServiceServer
+// RAServerServer is the server API for RAServer service.
+// All implementations must embed UnimplementedRAServerServer
 // for forward compatibility.
-type ServiceServer interface {
+type RAServerServer interface {
 	RequestCS(context.Context, *Request) (*Empty, error)
 	ReplyCS(context.Context, *Reply) (*Empty, error)
-	mustEmbedUnimplementedServiceServer()
+	mustEmbedUnimplementedRAServerServer()
 }
 
-// UnimplementedServiceServer must be embedded to have
+// UnimplementedRAServerServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedServiceServer struct{}
+type UnimplementedRAServerServer struct{}
 
-func (UnimplementedServiceServer) RequestCS(context.Context, *Request) (*Empty, error) {
+func (UnimplementedRAServerServer) RequestCS(context.Context, *Request) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RequestCS not implemented")
 }
-func (UnimplementedServiceServer) ReplyCS(context.Context, *Reply) (*Empty, error) {
+func (UnimplementedRAServerServer) ReplyCS(context.Context, *Reply) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReplyCS not implemented")
 }
-func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
-func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
+func (UnimplementedRAServerServer) mustEmbedUnimplementedRAServerServer() {}
+func (UnimplementedRAServerServer) testEmbeddedByValue()                  {}
 
-// UnsafeServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ServiceServer will
+// UnsafeRAServerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to RAServerServer will
 // result in compilation errors.
-type UnsafeServiceServer interface {
-	mustEmbedUnimplementedServiceServer()
+type UnsafeRAServerServer interface {
+	mustEmbedUnimplementedRAServerServer()
 }
 
-func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
-	// If the following call pancis, it indicates UnimplementedServiceServer was
+func RegisterRAServerServer(s grpc.ServiceRegistrar, srv RAServerServer) {
+	// If the following call pancis, it indicates UnimplementedRAServerServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Service_ServiceDesc, srv)
+	s.RegisterService(&RAServer_ServiceDesc, srv)
 }
 
-func _Service_RequestCS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RAServer_RequestCS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).RequestCS(ctx, in)
+		return srv.(RAServerServer).RequestCS(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_RequestCS_FullMethodName,
+		FullMethod: RAServer_RequestCS_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).RequestCS(ctx, req.(*Request))
+		return srv.(RAServerServer).RequestCS(ctx, req.(*Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_ReplyCS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RAServer_ReplyCS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Reply)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).ReplyCS(ctx, in)
+		return srv.(RAServerServer).ReplyCS(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_ReplyCS_FullMethodName,
+		FullMethod: RAServer_ReplyCS_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).ReplyCS(ctx, req.(*Reply))
+		return srv.(RAServerServer).ReplyCS(ctx, req.(*Reply))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Service_ServiceDesc is the grpc.ServiceDesc for Service service.
+// RAServer_ServiceDesc is the grpc.ServiceDesc for RAServer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "Service",
-	HandlerType: (*ServiceServer)(nil),
+var RAServer_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "RAServer",
+	HandlerType: (*RAServerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "RequestCS",
-			Handler:    _Service_RequestCS_Handler,
+			Handler:    _RAServer_RequestCS_Handler,
 		},
 		{
 			MethodName: "ReplyCS",
-			Handler:    _Service_ReplyCS_Handler,
+			Handler:    _RAServer_ReplyCS_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

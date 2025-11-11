@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "mandatory4/grpc";
+option go_package = "./grpc";
 
 message Empty {}
 
@@ -15,7 +15,7 @@ message Reply {
     string from = 2;
 }
 
-service Service {
+service RAServer {
     rpc RequestCS (Request) returns  (Empty);
     rpc ReplyCS (Reply) returns (Empty);
 

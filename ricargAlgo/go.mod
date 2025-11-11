@@ -1,4 +1,4 @@
-module github.com/yourusername/ricargAlgo
+module ricargAlgo
 
 go 1.25.0
 

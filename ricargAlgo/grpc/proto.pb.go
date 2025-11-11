@@ -172,10 +172,10 @@ const file_grpc_proto_proto_rawDesc = "" +
 	"\x04from\x18\x02 \x01(\tR\x04from\"9\n" +
 	"\x05Reply\x12\x1c\n" +
 	"\ttimestamp\x18\x01 \x01(\x03R\ttimestamp\x12\x12\n" +
-	"\x04from\x18\x02 \x01(\tR\x04from2C\n" +
-	"\aService\x12\x1d\n" +
+	"\x04from\x18\x02 \x01(\tR\x04from2D\n" +
+	"\bRAServer\x12\x1d\n" +
 	"\tRequestCS\x12\b.Request\x1a\x06.Empty\x12\x19\n" +
-	"\aReplyCS\x12\x06.Reply\x1a\x06.EmptyB\x11Z\x0fmandatory4/grpcb\x06proto3"
+	"\aReplyCS\x12\x06.Reply\x1a\x06.EmptyB\bZ\x06./grpcb\x06proto3"
 
 var (
 	file_grpc_proto_proto_rawDescOnce sync.Once
@@ -196,10 +196,10 @@ var file_grpc_proto_proto_goTypes = []any{
 	(*Reply)(nil),   // 2: Reply
 }
 var file_grpc_proto_proto_depIdxs = []int32{
-	1, // 0: Service.RequestCS:input_type -> Request
-	2, // 1: Service.ReplyCS:input_type -> Reply
-	0, // 2: Service.RequestCS:output_type -> Empty
-	0, // 3: Service.ReplyCS:output_type -> Empty
+	1, // 0: RAServer.RequestCS:input_type -> Request
+	2, // 1: RAServer.ReplyCS:input_type -> Reply
+	0, // 2: RAServer.RequestCS:output_type -> Empty
+	0, // 3: RAServer.ReplyCS:output_type -> Empty
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
