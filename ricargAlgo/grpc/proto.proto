@@ -5,14 +5,14 @@ option go_package = "./grpc";
 message Empty {}
 
 message Request {
-    int64 timestamp = 1;
-    string from = 2;
+    int64 Timestamp = 1;
+    string From = 2;
 
 }
 
 message Reply {
-    int64 timestamp = 1;
-    string from = 2;
+    int64 Timestamp = 1;
+    string From = 2;
 }
 
 service RAServer {

@@ -1,4 +1,4 @@
-package grpc
+package main
 
 import (
 	"encoding/json"

@@ -1,10 +1,8 @@
-package grpc
+package main
 
 import (
 	"context"
 	ra "ricargAlgo/grpc"
-
-	"google.golang.org/protobuf/types/known/emptypb"
 
 	"log"
 )
@@ -30,16 +28,20 @@ func (s *RAServer) RequestCS(ctx context.Context, req *ra.Request) (*ra.Empty, e
 		n.deferred[req.From] = true
 	}
 
-	n.mu.Lock()
+	// Capture values for logging while holding the lock
+	L := n.lamport
+	reqTs := n.requestTS
+	requesting := n.isRequesting
+	n.mu.Unlock()
 
 	if replyNow {
 
 		_ = n.SendReply(req.From)
 		log.Printf("[L=%d][node=%s][EVENT=RequestRecv][from=%s][ts=%d][decision=REPLIED][reqTs=%d][requesting=%v]",
-			n.lamport, n.node_id, req.From, req.Timestamp, n.requestTS, n.isRequesting)
+			L, n.node_id, req.From, req.Timestamp, reqTs, requesting)
 	} else {
 		log.Printf("[L=%d][node=%s][EVENT=RequestRecv][from=%s][ts=%d][decision=DEFERRED][reqTs=%d][requesting=%v]",
-			n.lamport, n.node_id, req.From, req.Timestamp, n.requestTS, n.isRequesting)
+			L, n.node_id, req.From, req.Timestamp, reqTs, requesting)
 	}
 
 	return &ra.Empty{}, nil
@@ -47,7 +49,7 @@ func (s *RAServer) RequestCS(ctx context.Context, req *ra.Request) (*ra.Empty, e
 }
 
 
-func (s *RAServer) ReplyCS(ctx context.Context, rep *ra.Reply) (*emptypb.Empty, error) {
+func (s *RAServer) ReplyCS(ctx context.Context, rep *ra.Reply) (*ra.Empty, error) {
 
 	n := s.node
 	n.mu.Lock()
@@ -59,7 +61,7 @@ func (s *RAServer) ReplyCS(ctx context.Context, rep *ra.Reply) (*emptypb.Empty, 
 	n.mu.Unlock()
 
 	log.Printf("[L=%d][node=%s][EVENT=ReplyRecv][from=%s][outstanding=%d]", L, n.node_id, rep.From, out)
-	return &emptypb.Empty{}, nil
+	return &ra.Empty{}, nil
 }
 
 

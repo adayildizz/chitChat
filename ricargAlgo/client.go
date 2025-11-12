@@ -1,4 +1,4 @@
-package grpc
+package main
 
 import (
 	"context"
@@ -71,6 +71,11 @@ func (n *Node) BroadcastRequest(reqTs int64) {
 			client, err := n.ensureClient(peer)
 			if err != nil {
 				log.Printf("[node=%s] ensureClient %s error: %v", n.node_id, peer, err)
+				// Decrement remainingReplies since we can't send request to this peer
+				n.mu.Lock()
+				n.remainingReplies--
+				n.cond.Broadcast()
+				n.mu.Unlock()
 				return
 			}
 			msg := &ra.Request{Timestamp: reqTs, From: n.node_id}
@@ -80,6 +85,11 @@ func (n *Node) BroadcastRequest(reqTs int64) {
 			}, "RequestCS")
 			if err != nil {
 				log.Printf("[node=%s] RequestSent to=%s ERROR: %v", n.node_id, peer, err)
+				// Decrement remainingReplies since request failed to send
+				n.mu.Lock()
+				n.remainingReplies--
+				n.cond.Broadcast()
+				n.mu.Unlock()
 				return
 			}
 			n.mu.Lock()
